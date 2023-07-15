@@ -3,7 +3,7 @@ import ContactList from 'components/ContactList';
 import Filter from 'components/Filter';
 import ContactForm from './ContactForm';
 import { Container } from './App.styled';
-import storage from '../storage'
+import storage from '../storage';
 
 class App extends React.Component {
   state = {
@@ -73,3 +73,4 @@ handleNewContact = newContact => {
 }
 
 export default App;
+export { storage };
