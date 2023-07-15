@@ -11,7 +11,7 @@ align-items: center;
 export const SpanList = styled.span`
 margin-left: 5px;
 `;
-/////
+
 
 export const Button = styled.button`
 cursor: pointer;

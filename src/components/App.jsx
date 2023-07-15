@@ -3,6 +3,7 @@ import ContactList from 'components/ContactList';
 import Filter from 'components/Filter';
 import ContactForm from './ContactForm';
 import { Container } from './App.styled';
+import storage from '../storage'
 
 class App extends React.Component {
   state = {
@@ -10,11 +11,31 @@ class App extends React.Component {
     filter: '',
   };
 
-  handleNewContact = newContact => {
-    this.setState(prevState => ({
-      contacts: [...prevState.contacts, newContact],
-    }));
-  };
+  componentDidMount() {
+    const storedContacts = storage.load("contacts");
+  
+    if (storedContacts && Array.isArray(storedContacts)) {
+      this.setState({ contacts: storedContacts });
+    }
+  }
+
+componentDidUpdate(prevState) {
+  const prevContacts = prevState.contacts;
+  const currentContacts = this.state.contacts;
+
+  if (prevContacts !== currentContacts) {
+    storage.save("contacts", currentContacts);
+  }
+}
+
+
+handleNewContact = newContact => {
+  const { contacts } = this.state;
+  const updatedContacts = [...contacts, newContact];
+  this.setState({ contacts: updatedContacts });
+  storage.save("contacts", updatedContacts);
+};
+
 
   handleFilter = event => {
     this.setState({ filter: event.target.value });
