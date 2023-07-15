@@ -1,4 +1,4 @@
-const save = (key, value) => {
+export const save = (key, value) => {
   try {
     const serializedState = JSON.stringify(value);
     localStorage.setItem(key, serializedState);
@@ -7,7 +7,7 @@ const save = (key, value) => {
   }
 };
 
-const load = key => {
+ const load = key => {
   try {
     const serializedState = localStorage.getItem(key);
     
@@ -17,4 +17,9 @@ const load = key => {
   }
 };
 
-export default { save, load };
+
+// eslint-disable-next-line import/no-anonymous-default-export
+export default {
+    save,
+    load
+  };

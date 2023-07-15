@@ -73,4 +73,3 @@ handleNewContact = newContact => {
 }
 
 export default App;
-export { storage };
